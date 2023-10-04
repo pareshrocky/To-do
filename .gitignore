@@ -68,3 +68,4 @@ node_modules
 
 # Local Netlify folder
 .netlify
+versel.json
