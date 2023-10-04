@@ -1,15 +1,17 @@
 //jshint esversion:6
 
 const express = require("express");
+require('dotenv').config()
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const app = express();
 
-const pwd = "ASDFG%402hjkl"
-
-mongoose.connect("mongodb+srv://admin-Paresh:" + `${pwd}` + "@cluster0.s98y6z6.mongodb.net/todoListDB?retryWrites=true&w=majority",{useNewUrlParser:true});
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true});
 
 const itemSchema = {
   name : {
@@ -67,10 +69,7 @@ const defaultItems = [item1,item2,item3]
   // Items()
 
 
-app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
 
 
 const workItems = [];
@@ -170,7 +169,12 @@ List.findOne({userRoute : customListName}).then( item => {
 app.get("/about", function(req, res){
   res.render("about");
 });
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+const dev_port = process.env.PORT;
+app.listen(dev_port, function() {
+  console.log("Server started on port " + dev_port);
 });
+
+
+
+// module.exports = app;
+// module.exports.handler = serverless(app);

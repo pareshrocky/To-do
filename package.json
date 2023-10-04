@@ -1,18 +1,24 @@
 {
   "name": "todolist-v1",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "TO DO LIST",
+  "main": "./app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.16.3",
+    "firebase": "^10.4.0",
     "lodash": "^4.17.21",
-    "mongoose": "^7.5.1"
+    "mongoose": "^7.5.1",
+    "netlify-cli": "^16.4.2",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0"
   }
 }
